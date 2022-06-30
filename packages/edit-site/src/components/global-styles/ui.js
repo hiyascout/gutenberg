@@ -24,6 +24,7 @@ import ScreenHeadingColor from './screen-heading-color';
 import ScreenButtonColor from './screen-button-color';
 import ScreenLayout from './screen-layout';
 import ScreenStyleVariations from './screen-style-variations';
+import ScreenCSS from './screen-css';
 
 function GlobalStylesNavigationScreen( { className, ...props } ) {
 	return (
@@ -152,6 +153,10 @@ function GlobalStylesUI() {
 					name={ block.name }
 				/>
 			) ) }
+
+			<GlobalStylesNavigationScreen path="/css">
+				<ScreenCSS />
+			</GlobalStylesNavigationScreen>
 		</NavigatorProvider>
 	);
 }
