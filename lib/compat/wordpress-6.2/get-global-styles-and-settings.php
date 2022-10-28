@@ -57,7 +57,9 @@ if ( ! function_exists( 'wp_theme_clean_theme_json_cached_data' ) ) {
  *     @type string $block_name Which block to retrieve the settings from.
  *                              If empty, it'll return the settings for the global context.
  *     @type string $origin     Which origin to take data from.
- *                              Valid values are 'all' (core, theme, and user) or 'base' (core and theme).
+ *                              Valid values are:
+ *                              - 'all': loads all data (default, blocks, theme, and user)
+ *                              - 'base': loads only default, blocks, and theme data
  *                              If empty or unknown, 'all' is used.
  * }
  *
@@ -67,10 +69,6 @@ function gutenberg_get_global_settings( $path = array(), $context = array() ) {
 	if ( ! empty( $context['block_name'] ) ) {
 		$path = array_merge( array( 'blocks', $context['block_name'] ), $path );
 	}
-	$origin = 'custom';
-	if ( isset( $context['origin'] ) && 'base' === $context['origin'] ) {
-		$origin = 'theme';
-	}
 
 	// TODO: offer a way to clean cache, if neccessary.
 	static $settings_by_origin = array(
@@ -79,6 +77,17 @@ function gutenberg_get_global_settings( $path = array(), $context = array() ) {
 		'theme'   => null,
 		'custom'  => null,
 	);
+
+	$origin = 'custom';
+	if ( isset( $context['origin'] ) && 'base' === $context['origin'] ) {
+		$origin = 'theme';
+	} elseif ( isset( $context['origin'] ) && 'all' === $context['all'] ) {
+		$origin = 'custom';
+	} elseif ( ! wp_theme_has_theme_json() ) {
+		// For themes with no theme.json skip querying the database for user data (custom origin).
+		$origin = 'theme';
+	}
+
 	if ( null === $settings_by_origin[ $origin ] ) {
 		$settings_by_origin[ $origin ] = WP_Theme_JSON_Resolver_Gutenberg::get_merged_data( $origin )->get_settings();
 	}
