@@ -42,6 +42,7 @@ if ( ! function_exists( 'wp_theme_clean_theme_json_cached_data' ) ) {
 	 */
 	function wp_theme_clean_theme_json_cached_data() {
 		wp_theme_has_theme_json( true );
+		wp_get_global_settings( true );
 		WP_Theme_JSON_Resolver_Gutenberg::clean_cached_data();
 	}
 }
@@ -49,10 +50,10 @@ if ( ! function_exists( 'wp_theme_clean_theme_json_cached_data' ) ) {
 /**
  * Function to get the settings resulting of merging core, theme, and user data.
  *
- * @param array $path    Path to the specific setting to retrieve. Optional.
- *                       If empty, will return all settings.
- * @param array $context {
- *     Metadata to know where to retrieve the $path from. Optional.
+ * @param array   $path    Path to the specific setting to retrieve. Optional.
+ *                         If empty, will return all settings.
+ * @param array   $context {
+ *       Metadata to know where to retrieve the $path from. Optional.
  *
  *     @type string $block_name Which block to retrieve the settings from.
  *                              If empty, it'll return the settings for the global context.
@@ -62,21 +63,29 @@ if ( ! function_exists( 'wp_theme_clean_theme_json_cached_data' ) ) {
  *                              - 'base': loads only default, blocks, and theme data
  *                              If empty or unknown, 'all' is used.
  * }
+ * @param boolean $clear_cache Whether the cache should be cleared and settings recomputed. Default is false.
  *
  * @return array The settings to retrieve.
  */
-function gutenberg_get_global_settings( $path = array(), $context = array() ) {
+function gutenberg_get_global_settings( $path = array(), $context = array(), $clear_cache = false ) {
 	if ( ! empty( $context['block_name'] ) ) {
 		$path = array_merge( array( 'blocks', $context['block_name'] ), $path );
 	}
 
-	// TODO: offer a way to clean cache, if neccessary.
 	static $settings_by_origin = array(
 		'default' => null,
 		'blocks'  => null,
 		'theme'   => null,
 		'custom'  => null,
 	);
+	if ( true === $clear_cache ) {
+		$settings_by_origin = array(
+			'default' => null,
+			'blocks'  => null,
+			'theme'   => null,
+			'custom'  => null,
+		);
+	}
 
 	$origin = 'custom';
 	if ( isset( $context['origin'] ) && 'base' === $context['origin'] ) {
