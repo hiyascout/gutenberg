@@ -30,8 +30,19 @@ function gutenberg_get_global_settings( $path = array(), $context = array() ) {
 	if ( isset( $context['origin'] ) && 'base' === $context['origin'] ) {
 		$origin = 'theme';
 	}
-	$settings = WP_Theme_JSON_Resolver_Gutenberg::get_merged_data( $origin )->get_settings();
-	return _wp_array_get( $settings, $path, $settings );
+
+	// TODO: offer a way to clean cache, if neccessary.
+	static $settings_by_origin = array(
+		'default' => null,
+		'blocks'  => null,
+		'theme'   => null,
+		'custom'  => null,
+	);
+	if ( null === $settings_by_origin[ $origin ] ) {
+		$settings_by_origin[ $origin ] = WP_Theme_JSON_Resolver_Gutenberg::get_merged_data( $origin )->get_settings();
+	}
+
+	return _wp_array_get( $settings_by_origin[ $origin ], $path, $settings_by_origin[ $origin ] );
 }
 
 /**
