@@ -32,6 +32,7 @@ export default function InspectorControlsTabs( {
 							blockName={ blockName }
 							clientId={ clientId }
 							hasBlockStyles={ hasBlockStyles }
+							hasSingleBlockSelection={ !! blockName }
 						/>
 					);
 				}
