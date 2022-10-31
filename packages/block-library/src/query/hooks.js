@@ -40,7 +40,7 @@ const queryTopInspectorControls = createHigherOrderComponent(
 
 		return (
 			<>
-				<InspectorControls>
+				<InspectorControls __experimentalGroup="general">
 					<CreateNewPostLink { ...props } />
 				</InspectorControls>
 				<BlockEdit key="edit" { ...props } />
