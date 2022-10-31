@@ -1,89 +1,15 @@
 /**
  * WordPress dependencies
  */
-import { hasBlockSupport } from '@wordpress/blocks';
-import {
-	PanelBody,
-	TabPanel,
-	__experimentalUseSlotFills as useSlotFills,
-} from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
+import { TabPanel } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
-import BlockStyles from '../block-styles';
-import DefaultStylePicker from '../default-style-picker';
 import useInspectorControlsTabs from './use-inspector-controls-tabs';
 import { TAB_SETTINGS, TAB_APPEARANCE } from './utils';
-import {
-	default as InspectorControls,
-	InspectorAdvancedControls,
-} from '../inspector-controls';
-
-export const AdvancedControls = () => {
-	const fills = useSlotFills( InspectorAdvancedControls.slotName );
-	const hasFills = Boolean( fills && fills.length );
-
-	if ( ! hasFills ) {
-		return null;
-	}
-
-	return (
-		<PanelBody
-			className="block-editor-block-inspector__advanced"
-			title={ __( 'Advanced' ) }
-			initialOpen={ false }
-		>
-			<InspectorControls.Slot __experimentalGroup="advanced" />
-		</PanelBody>
-	);
-};
-
-const getSettingsTab = ( hasSingleBlockSelection = false ) => (
-	<>
-		<InspectorControls.Slot />
-		{ hasSingleBlockSelection && (
-			<div>
-				<AdvancedControls />
-			</div>
-		) }
-	</>
-);
-
-const getAppearanceTab = ( blockName, clientId, hasBlockStyles ) => (
-	<>
-		{ hasBlockStyles && (
-			<div>
-				<PanelBody title={ __( 'Styles' ) }>
-					<BlockStyles clientId={ clientId } />
-					{ hasBlockSupport(
-						blockName,
-						'defaultStylePicker',
-						true
-					) && <DefaultStylePicker blockName={ blockName } /> }
-				</PanelBody>
-			</div>
-		) }
-		<InspectorControls.Slot
-			__experimentalGroup="color"
-			label={ __( 'Color' ) }
-			className="color-block-support-panel__inner-wrapper"
-		/>
-		<InspectorControls.Slot
-			__experimentalGroup="typography"
-			label={ __( 'Typography' ) }
-		/>
-		<InspectorControls.Slot
-			__experimentalGroup="dimensions"
-			label={ __( 'Dimensions' ) }
-		/>
-		<InspectorControls.Slot
-			__experimentalGroup="border"
-			label={ __( 'Border' ) }
-		/>
-	</>
-);
+import AppearanceTab from './appearance-tab';
+import SettingsTab from './settings-tab';
 
 export default function InspectorControlsTabs( {
 	blockName,
@@ -101,11 +27,21 @@ export default function InspectorControlsTabs( {
 	// render the contents.
 	if ( availableTabs.length === 1 ) {
 		if ( availableTabs[ 0 ].name === TAB_SETTINGS.name ) {
-			return getSettingsTab( hasSingleBlockSelection );
+			return (
+				<SettingsTab
+					hasSingleBlockSelection={ hasSingleBlockSelection }
+				/>
+			);
 		}
 
 		if ( availableTabs[ 0 ].name === TAB_APPEARANCE.name ) {
-			return getAppearanceTab( blockName, clientId, hasBlockStyles );
+			return (
+				<AppearanceTab
+					blockName={ blockName }
+					clientId={ clientId }
+					hasBlockStyles={ hasBlockStyles }
+				/>
+			);
 		}
 	}
 
@@ -117,14 +53,20 @@ export default function InspectorControlsTabs( {
 		>
 			{ ( tab ) => {
 				if ( tab.name === TAB_SETTINGS.name ) {
-					return getSettingsTab( hasSingleBlockSelection );
+					return (
+						<SettingsTab
+							hasSingleBlockSelection={ hasSingleBlockSelection }
+						/>
+					);
 				}
 
 				if ( tab.name === TAB_APPEARANCE.name ) {
-					return getAppearanceTab(
-						blockName,
-						clientId,
-						hasBlockStyles
+					return (
+						<AppearanceTab
+							blockName={ blockName }
+							clientId={ clientId }
+							hasBlockStyles={ hasBlockStyles }
+						/>
 					);
 				}
 			} }

@@ -31,10 +31,8 @@ import BlockIcon from '../block-icon';
 import BlockStyles from '../block-styles';
 import DefaultStylePicker from '../default-style-picker';
 import { default as InspectorControls } from '../inspector-controls';
-import {
-	default as InspectorControlsTabs,
-	AdvancedControls,
-} from '../inspector-controls-tabs';
+import { default as InspectorControlsTabs } from '../inspector-controls-tabs';
+import AdvancedControls from '../inspector-controls-tabs/advanced-controls-panel';
 
 function useContentBlocks( blockTypes, block ) {
 	const contentBlocksObjectAux = useMemo( () => {
