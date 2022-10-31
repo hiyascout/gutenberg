@@ -42,7 +42,7 @@ if ( ! function_exists( 'wp_theme_clean_theme_json_cached_data' ) ) {
 	 */
 	function wp_theme_clean_theme_json_cached_data() {
 		wp_theme_has_theme_json( true );
-		wp_get_global_settings( true );
+		gutenberg_get_global_settings( array(), array(), true );
 		WP_Theme_JSON_Resolver_Gutenberg::clean_cached_data();
 	}
 }
