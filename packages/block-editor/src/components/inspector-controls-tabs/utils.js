@@ -1,14 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { cog, listView, styles } from '@wordpress/icons';
-
-export const TAB_MENU = {
-	name: 'menu',
-	title: 'Menu',
-	value: 'menu',
-	icon: listView,
-};
+import { cog, styles } from '@wordpress/icons';
 
 export const TAB_SETTINGS = {
 	name: 'settings',

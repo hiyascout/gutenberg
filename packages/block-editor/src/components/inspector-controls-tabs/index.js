@@ -15,7 +15,7 @@ import { __ } from '@wordpress/i18n';
 import BlockStyles from '../block-styles';
 import DefaultStylePicker from '../default-style-picker';
 import useInspectorControlsTabs from './use-inspector-controls-tabs';
-import { TAB_MENU, TAB_SETTINGS, TAB_APPEARANCE } from './utils';
+import { TAB_SETTINGS, TAB_APPEARANCE } from './utils';
 import {
 	default as InspectorControls,
 	InspectorAdvancedControls,
@@ -39,8 +39,6 @@ export const AdvancedControls = () => {
 		</PanelBody>
 	);
 };
-
-const getMenuTab = () => <InspectorControls.Slot __experimentalGroup="menu" />;
 
 const getSettingsTab = ( hasSingleBlockSelection = false ) => (
 	<>
@@ -102,10 +100,6 @@ export default function InspectorControlsTabs( {
 	// If we only have a single tab to display, skip the tab panel and just
 	// render the contents.
 	if ( availableTabs.length === 1 ) {
-		if ( availableTabs[ 0 ].name === TAB_MENU.name ) {
-			return getMenuTab();
-		}
-
 		if ( availableTabs[ 0 ].name === TAB_SETTINGS.name ) {
 			return getSettingsTab( hasSingleBlockSelection );
 		}
@@ -122,10 +116,6 @@ export default function InspectorControlsTabs( {
 			tabs={ availableTabs }
 		>
 			{ ( tab ) => {
-				if ( tab.name === TAB_MENU.name ) {
-					return getMenuTab();
-				}
-
 				if ( tab.name === TAB_SETTINGS.name ) {
 					return getSettingsTab( hasSingleBlockSelection );
 				}
