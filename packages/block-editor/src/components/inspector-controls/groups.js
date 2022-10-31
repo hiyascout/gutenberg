@@ -14,12 +14,17 @@ const InspectorControlsTypography = createSlotFill(
 	'InspectorControlsTypography'
 );
 
+// The general group is intended to render fills relevant to a block as a whole.
+// As such, they will normally be rendered outside the block inspector's tabs.
+const InspectorControlsGeneral = createSlotFill( 'InspectorControlsGeneral' );
+
 const groups = {
 	default: InspectorControlsDefault,
 	advanced: InspectorControlsAdvanced,
 	border: InspectorControlsBorder,
 	color: InspectorControlsColor,
 	dimensions: InspectorControlsDimensions,
+	general: InspectorControlsGeneral,
 	typography: InspectorControlsTypography,
 };
 
