@@ -8,6 +8,7 @@ export const TAB_SETTINGS = {
 	title: 'Settings',
 	value: 'settings',
 	icon: cog,
+	className: 'block-editor-block-inspector__tab-item',
 };
 
 export const TAB_APPEARANCE = {
@@ -15,4 +16,5 @@ export const TAB_APPEARANCE = {
 	title: 'Appearance',
 	value: 'appearance',
 	icon: styles,
+	className: 'block-editor-block-inspector__tab-item',
 };
