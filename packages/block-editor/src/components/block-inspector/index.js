@@ -166,14 +166,13 @@ const BlockInspector = ( { showNoBlockSelectedMessage = true } ) => {
 		};
 	}, [] );
 
-	const areBlockInspectorTabsEnabled =
-		window?.__experimentalEnableBlockInspectorTabs;
+	const showTabs = window?.__experimentalEnableBlockInspectorTabs;
 
 	if ( count > 1 ) {
 		return (
 			<div className="block-editor-block-inspector">
 				<MultiSelectionInspector />
-				{ areBlockInspectorTabsEnabled ? (
+				{ showTabs ? (
 					<InspectorControlsTabs />
 				) : (
 					<>
@@ -233,12 +232,13 @@ const BlockInspector = ( { showNoBlockSelectedMessage = true } ) => {
 		<BlockInspectorSingleBlock
 			clientId={ selectedBlockClientId }
 			blockName={ blockType.name }
-			showTabs={ areBlockInspectorTabsEnabled }
 		/>
 	);
 };
 
-const BlockInspectorSingleBlock = ( { clientId, blockName, showTabs } ) => {
+const BlockInspectorSingleBlock = ( { clientId, blockName } ) => {
+	const showTabs = window?.__experimentalEnableBlockInspectorTabs;
+
 	const hasBlockStyles = useSelect(
 		( select ) => {
 			const { getBlockStyles } = select( blocksStore );
