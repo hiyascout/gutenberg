@@ -35,10 +35,8 @@ const AppearanceTab = ( {
 			{ ! appearanceFills.length && (
 				<span className="block-editor-block-inspector__no-block-tools">
 					{ hasSingleBlockSelection
-						? __( 'This block has no appearance tools.' )
-						: __(
-								'The selected blocks have no appearance tools.'
-						  ) }
+						? __( 'This block has no style options.' )
+						: __( 'The selected blocks have no style options.' ) }
 				</span>
 			) }
 			{ hasBlockStyles && (
