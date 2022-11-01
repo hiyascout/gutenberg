@@ -8,6 +8,8 @@
 
 ### Deprecations
 
+-   `Popover`: the deprecation messages for anchor-related props (`anchorRef`, `anchorRect`, `getAnchorRect`) have been updated ([#45195](https://github.com/WordPress/gutenberg/pull/45195)).
+-   `RadioGroup`: Mark as deprecated, in favor of `RadioControl` and `ToggleGroupControl` ([#45389](https://github.com/WordPress/gutenberg/pull/45389)).
 -   `Popover`: the deprecation messages for anchor-related props (`anchorRef`, `anchorRect`, `getAnchorRect`) have been updated. ([#45195](https://github.com/WordPress/gutenberg/pull/45195)).
 -   `Popover`: The `isAlternate` prop has been replaced with a `variant` prop that can be called with the `'toolbar'` string ([#45137](https://github.com/WordPress/gutenberg/pull/45137)).
 
@@ -53,6 +55,7 @@
 -   `TextControl`: Set Storybook control types on `help`, `label` and `type` ([#45405](https://github.com/WordPress/gutenberg/pull/45405)).
 -   `Autocomplete`: use Popover's new `placement` prop instead of legacy `position` prop ([#44396](https://github.com/WordPress/gutenberg/pull/44396/)).
 -   `TextControl`: Restrict `type` prop to `email`, `number`, `password`, `tel`, `text`, `search` or `url` ([#45433](https://github.com/WordPress/gutenberg/pull/45433/)).
+-   `SelectControl`: Add `onChange`, `onBlur` and `onFocus` to storybook actions ([#45432](https://github.com/WordPress/gutenberg/pull/45432/)).
 -   `FontSizePicker`: Add more comprehensive tests ([#45298](https://github.com/WordPress/gutenberg/pull/45298)).
 
 ## 21.3.0 (2022-10-19)
