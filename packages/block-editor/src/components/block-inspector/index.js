@@ -251,7 +251,7 @@ const BlockInspectorSingleBlock = ( { clientId, blockName } ) => {
 		<div className="block-editor-block-inspector">
 			<BlockCard { ...blockInformation } />
 			<BlockVariationTransforms blockClientId={ clientId } />
-			<InspectorControls.Slot __experimentalGroup="blockInformation" />
+			<InspectorControls.Slot __experimentalGroup="info" />
 			{ showTabs && (
 				<InspectorControlsTabs
 					hasBlockStyles={ hasBlockStyles }
