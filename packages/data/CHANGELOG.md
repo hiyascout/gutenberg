@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Enhancements
+-   The `registry.subscribe` function can now subscribe to updates only from one specific store, with a new optional parameter.
+
 ## 7.5.0 (2022-11-02)
 
 ## 7.4.0 (2022-10-19)
