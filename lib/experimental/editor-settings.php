@@ -97,7 +97,7 @@ function gutenberg_enable_off_canvas_navigation_editor() {
 add_action( 'admin_init', 'gutenberg_enable_off_canvas_navigation_editor' );
 
 /**
- * Sets a global JS variable used to trigger the availability of zoomed out view.
+ * Sets a global JS variable used to trigger the availability of the block inspector tabs experiment.
  */
 function gutenberg_enable_block_inspector_tabs() {
 	$gutenberg_experiments = get_option( 'gutenberg-experiments' );
