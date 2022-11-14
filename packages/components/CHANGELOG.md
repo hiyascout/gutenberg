@@ -28,7 +28,7 @@
 -   `Draggable`: Convert to TypeScript ([#45471](https://github.com/WordPress/gutenberg/pull/45471)).
 -   `MenuGroup`: Convert to TypeScript ([#45617](https://github.com/WordPress/gutenberg/pull/45617)).
 -   `useCx`: fix story to satisfy the `react-hooks/exhaustive-deps` eslint rule ([#45614](https://github.com/WordPress/gutenberg/pull/45614))
--   `AnglePickerControl`: remove `:focus-visible' outline on `CircleOutlineWrapper` ([#45758](https://github.com/WordPress/gutenberg/pull/45758))
+-   `AnglePickerControl`: remove `:focus-visible` outline on `CircleOutlineWrapper` ([#45758](https://github.com/WordPress/gutenberg/pull/45758))
 
 ### Experimental
 
