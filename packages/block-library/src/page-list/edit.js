@@ -8,8 +8,8 @@ import classnames from 'classnames';
  */
 import {
 	BlockControls,
-	InnerBlocks,
 	useBlockProps,
+	useInnerBlocksProps,
 	getColorClassName,
 } from '@wordpress/block-editor';
 import { ToolbarButton, Spinner, Notice } from '@wordpress/components';
@@ -77,7 +77,12 @@ export default function PageListEdit( { context, clientId } ) {
 		}, [] );
 	};
 
-	const pagesTemplate = makeBlockTemplate();
+	const pagesTemplate = useMemo( makeBlockTemplate, [ pagesByParentId ] );
+
+	const innerBlocksProps = useInnerBlocksProps( blockProps, {
+		template: pagesTemplate,
+		templateLock: 'all',
+	} );
 
 	const getBlockContent = () => {
 		if ( ! hasResolvedPages ) {
@@ -109,14 +114,7 @@ export default function PageListEdit( { context, clientId } ) {
 		}
 
 		if ( totalPages > 0 ) {
-			return (
-				<ul { ...blockProps }>
-					<InnerBlocks
-						template={ pagesTemplate }
-						templateLock="all"
-					/>
-				</ul>
-			);
+			return <ul { ...innerBlocksProps }></ul>;
 		}
 	};
 
