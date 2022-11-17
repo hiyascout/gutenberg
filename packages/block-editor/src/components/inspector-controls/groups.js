@@ -10,6 +10,7 @@ const InspectorControlsColor = createSlotFill( 'InspectorControlsColor' );
 const InspectorControlsDimensions = createSlotFill(
 	'InspectorControlsDimensions'
 );
+const InspectorControlsLayout = createSlotFill( 'InspectorControlsLayout' );
 const InspectorControlsTypography = createSlotFill(
 	'InspectorControlsTypography'
 );
@@ -20,6 +21,7 @@ const groups = {
 	border: InspectorControlsBorder,
 	color: InspectorControlsColor,
 	dimensions: InspectorControlsDimensions,
+	layout: InspectorControlsLayout,
 	typography: InspectorControlsTypography,
 };
 
